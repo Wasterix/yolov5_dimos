@@ -84,7 +84,9 @@ def detect(opt):
     save_dir.mkdir(parents=True, exist_ok=True)  # make dir
 
     # Load model
-    device = select_device(device)
+    # device = "cuda:0" # Grafikkarte
+    devie = select_device(device) # CPU
+
     model = DetectMultiBackend(yolo_model, device=device, dnn=opt.dnn)
     stride, names, pt, jit, _ = model.stride, model.names, model.pt, model.jit, model.onnx
     imgsz = check_img_size(imgsz, s=stride)  # check image size
